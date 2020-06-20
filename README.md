@@ -82,7 +82,7 @@ $ git remote -v
 - If there's no origin, set it. Make sure you *replace your-github-account*:
 
 ```
-otp_27may> git remote add origin https://github.com/your-github-account/phx_24_June.git
+phx_24_June> git remote add origin https://github.com/your-github-account/phx_24_June.git
 ```
 
 - Verify your remote: 
@@ -96,7 +96,7 @@ $ git remote -v
 - Set the upstream to the Groxio repo:
 
 ```
-otp_27may> git remote add upstream https://github.com/groxio-learning/phx_24_June.git
+phx_24_June> git remote add upstream https://github.com/groxio-learning/phx_24_June.git
 ```
 
 - Verify the remotes: 
