@@ -1,5 +1,31 @@
 defmodule Speech do
 
+  def passage("preamble") do
+    """
+    When in the Course of human events, it becomes necessary for one people to
+    dissolve the political bands which have connected them with another, and to
+    assume among the powers of the earth, the separate and equal station to
+    which the Laws of Nature and of Nature's God entitle them, a decent respect
+    to the opinions of mankind requires that they should declare the causes
+    which impel them to the separation.
+    """
+  end
+  
+  def passage("tom jobim") do
+    """
+    A stick, a stone
+    It's the end of the road
+    It's the rest of a stump
+    It's a little alone
+
+    It's a sliver of glass
+    It is life, it's the sun
+    It is night, it is death
+    It's a trap, it's a gun
+    """
+  end
+
+
   def passage("macbeth") do
     """
     Tomorrow, and tomorrow, and tomorrow,
@@ -14,18 +40,22 @@ defmodule Speech do
     Signifying nothing.
     """
   end
-
-  def passage("tom jobim") do
+  
+  def passage("gettysburg") do
     """
-    A stick, a stone
-    It's the end of the road
-    It's the rest of a stump
-    It's a little alone
-
-    It's a sliver of glass
-    It is life, it's the sun
-    It is night, it is death
-    It's a trap, it's a gun
+    Four score and seven years ago
+    our fathers brought forth on this continent,
+    a new nation,
+    conceived in Liberty,
+    and dedicated to the proposition
+    that all men are created equal.
+    """
+  end
+  
+  def passage("tao") do
+ 	  """
+    The highest sage shares his moral possessions with others.  The next in
+    wisdom shares his material possessions with others.
     """
   end
 end
