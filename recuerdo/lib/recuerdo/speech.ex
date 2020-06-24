@@ -1,5 +1,4 @@
 defmodule Speech do
-
   def passage("preamble") do
     """
     When in the Course of human events, it becomes necessary for one people to
@@ -24,7 +23,6 @@ defmodule Speech do
     It's a trap, it's a gun
     """
   end
-
 
   def passage("macbeth") do
     """
@@ -56,6 +54,25 @@ defmodule Speech do
  	  """
     The highest sage shares his moral possessions with others.  The next in
     wisdom shares his material possessions with others.
+    """
+  end
+
+  # Who goes with Fergus? — W.B. Yeats
+  def passage("fergus") do
+    """
+    Who will go drive with Fergus now,
+    And pierce the deep wood's woven shade,
+    And dance upon the level shore?
+    Young man, lift up your russet brow,
+    And lift your tender eyelids, maid
+    And brood on hopes and fear no more.
+
+    And no more turn aside and brood
+    Upon love's bitter mystery;
+    For Fergus rules the brazen cars,
+    And rules the shadows of the wood,
+    And the white breast of the dim sea
+    And all dishevelled wandering stars.
     """
   end
 end
