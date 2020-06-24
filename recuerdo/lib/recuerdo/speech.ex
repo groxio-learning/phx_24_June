@@ -1,4 +1,5 @@
 defmodule Speech do
+
   def passage("preamble") do
     """
     When in the Course of human events, it becomes necessary for one people to
@@ -9,6 +10,21 @@ defmodule Speech do
     which impel them to the separation.
     """
   end
+  
+  def passage("tom jobim") do
+    """
+    A stick, a stone
+    It's the end of the road
+    It's the rest of a stump
+    It's a little alone
+
+    It's a sliver of glass
+    It is life, it's the sun
+    It is night, it is death
+    It's a trap, it's a gun
+    """
+  end
+
 
   def passage("macbeth") do
     """
@@ -25,7 +41,7 @@ defmodule Speech do
     """
   end
   
-    def passage("gettysburg") do
+  def passage("gettysburg") do
     """
     Four score and seven years ago
     our fathers brought forth on this continent,
@@ -42,5 +58,4 @@ defmodule Speech do
     wisdom shares his material possessions with others.
     """
   end
-
 end
