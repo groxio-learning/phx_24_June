@@ -1,13 +1,15 @@
 defmodule RecuerdoWeb.CounterLive do
   use RecuerdoWeb, :live_view
+  alias Recuerdo.Counter
 
   @impl true
   def mount(_params, _session, socket) do
     socket =
       assign(socket,
-      count: 0
+        count: 0
       )
-    IO.inspect socket
+
+    # IO.inspect(socket)
     {:ok, socket}
   end
 
@@ -22,5 +24,13 @@ defmodule RecuerdoWeb.CounterLive do
     """
   end
 
+  defp increment(socket) do
+    assign(socket,
+      count: Counter.increment(socket.assigns.count)
+    )
+  end
 
+  def handle_event("change", _, socket) do
+    {:noreply, socket |> increment()}
+  end
 end
