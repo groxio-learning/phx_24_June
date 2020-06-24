@@ -18,19 +18,28 @@ defmodule RecuerdoWeb.CounterLive do
     <h1>
       <%= @count %>
     </h1>
-    <button phx-click="change">
+    <button phx-click="change" phx-value-direction="increment">
       Increment
+    </button>
+    <button phx-click="change" phx-value-direction="decrement">
+      Decrement
     </button>
     """
   end
 
-  defp increment(socket) do
+  defp change(socket,"increment") do
     assign(socket,
       count: Counter.increment(socket.assigns.count)
     )
   end
+  defp change(socket,"decrement") do
+    assign(socket,
+      count: Counter.decrement(socket.assigns.count)
+    )
+  end
 
-  def handle_event("change", _, socket) do
-    {:noreply, socket |> increment()}
+  def handle_event("change", %{"direction" => direction}, socket) do
+    {:noreply, socket |> change(direction)}
+
   end
 end
