@@ -1,5 +1,5 @@
 defmodule Speech do
-  
+
   def passage("macbeth") do
     """
     Tomorrow, and tomorrow, and tomorrow,
@@ -14,10 +14,23 @@ defmodule Speech do
     Signifying nothing.
     """
   end
+
+  def passage("gettysburg") do
+    """
+    Four score and seven years ago
+    our fathers brought forth on this continent,
+    a new nation,
+    conceived in Liberty,
+    and dedicated to the proposition
+    that all men are created equal.
+    """
+  end
+  
   def passage("tao") do
-  	"""
-  	The highest sage shares his moral possessions with others.  The next in
-  	wisdom shares his material possessions with others.
-  	"""
+ 	  """
+    The highest sage shares his moral possessions with others.  The next in
+    wisdom shares his material possessions with others.
+    """
   end
 end
+
