@@ -1,5 +1,5 @@
 defmodule Speech do
-  
+
   def passage("macbeth") do
     """
     Tomorrow, and tomorrow, and tomorrow,
@@ -12,6 +12,20 @@ defmodule Speech do
     And then is heard no more. It is a tale
     Told by an idiot, full of sound and fury,
     Signifying nothing.
+    """
+  end
+
+  def passage("tom jobim") do
+    """
+    A stick, a stone
+    It's the end of the road
+    It's the rest of a stump
+    It's a little alone
+
+    It's a sliver of glass
+    It is life, it's the sun
+    It is night, it is death
+    It's a trap, it's a gun
     """
   end
 end
