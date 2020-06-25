@@ -1,6 +1,7 @@
 <h1>Recuerdo!</h1>
 <%= if is_nil(@eraser) do %>
 <div>
+  <H2>Enter your own text</H2>
 <%= f = form_for @changeset, "#",
   phx_change: "validate",
   phx_submit: "save" %>
@@ -15,6 +16,15 @@
 
   <%= submit "Play", disabled: !@changeset.valid? %>
 </form>
+<H2>Or pick one of ours</H2>
+<%= for name <- @passage_names do %>
+<div>
+  <button phx-click="passage" phx-value-name="<%= name %>" > <%= name %>
+
+  </button>
+</div>
+
+<% end %>
 
 </div>
 <% else %>
@@ -22,4 +32,4 @@
 <button phx-click="erase">Erase!</button>
 <button <%= disabled?(@eraser) %> phx-click="play_again">Play Again</button>
 <% end %>
-<pre><%= inspect @changeset %></pre>
+<pre><%= inspect @passage_names %></pre>
