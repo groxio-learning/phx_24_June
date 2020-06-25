@@ -22,9 +22,10 @@ defmodule Recuerdo.Library do
   end
 
   def passage_names do
-    (from p in Passage,
-    select: p.name)
-    |> Repo.all
+    from(p in Passage,
+      select: p.name
+    )
+    |> Repo.all()
   end
 
   @doc """
@@ -56,6 +57,8 @@ defmodule Recuerdo.Library do
 
   """
   def create_passage(attrs \\ %{}) do
+    Phoenix.PubSub.broadcast(Recuerdo.PubSub, "library-passage-added", attrs["name"])
+
     %Passage{}
     |> Passage.changeset(attrs)
     |> Repo.insert()
@@ -109,7 +112,7 @@ defmodule Recuerdo.Library do
   end
 
   def find_passage_by_name(name) do
-    (from p in Passage, where: p.name == ^name)
-    |> Repo.one
+    from(p in Passage, where: p.name == ^name)
+    |> Repo.one()
   end
 end
