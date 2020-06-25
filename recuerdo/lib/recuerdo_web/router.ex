@@ -19,6 +19,7 @@ defmodule RecuerdoWeb.Router do
 
     live "/", PageLive, :index
     live "/count", CounterLive
+    live "/game", GameLive
   end
 
   # Other scopes may use custom stacks.
