@@ -13,11 +13,15 @@ defmodule RecuerdoWeb.GameLive do
   end
 
   def handle_event("play_again", _, socket) do
-    {:noreply, new_eraser(socket)}
+    {:noreply, assign(socket, eraser: nil)}
   end
 
   def handle_event("validate", %{"passage" => params}, socket) do
-    {:noreply, socket |> validate(params)  }
+    {:noreply, socket |> validate(params)}
+  end
+
+  def handle_event("save", %{"passage" => params}, socket) do
+    {:noreply, socket |> save(params)}
   end
 
   defp erase(socket) do
@@ -28,17 +32,18 @@ defmodule RecuerdoWeb.GameLive do
     assign(socket, eraser: new_eraser)
   end
 
-  def validate( socket, params) do
+  def validate(socket, params) do
     assign(socket, changeset: Passage.nameless_changeset(%Passage{}, params))
   end
 
-  def new_eraser(socket) do
-    text = Speech.random_passage()
-    steps = 5
+  def save(socket, params) do
+    new_eraser(socket, params["text"], String.to_integer(params["steps"]))
+  end
+
+  def new_eraser(socket, text, steps) do
     eraser = Model.new(text, steps)
     assign(socket, eraser: eraser)
   end
-
 
   def disabled?(eraser) do
     unless Model.finished?(eraser) do
