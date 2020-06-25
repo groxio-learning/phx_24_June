@@ -13,7 +13,7 @@
   <%= number_input f, :steps %>
   <%= error_tag f, :steps %>
 
-  <%= submit "Play" %>
+  <%= submit "Play", disabled: !@changeset.valid? %>
 </form>
 
 </div>
@@ -22,4 +22,4 @@
 <button phx-click="erase">Erase!</button>
 <button <%= disabled?(@eraser) %> phx-click="play_again">Play Again</button>
 <% end %>
-<pre><%= inspect @eraser %></pre>
+<pre><%= inspect @changeset %></pre>
