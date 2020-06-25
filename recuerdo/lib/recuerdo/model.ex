@@ -72,4 +72,7 @@ defmodule Recuerdo.Model do
       "_"
     end
   end
+
+  def finished?(%{schedule: []}), do: true
+  def finished?(_model), do: false
 end
