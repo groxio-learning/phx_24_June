@@ -4,7 +4,7 @@ defmodule Recuerdo.Library.Passage do
 
   schema "passages" do
     field :name, :string
-    field :steps, :integer
+    field :steps, :integer, default: 5
     field :text, :string
 
     timestamps()
