@@ -9,6 +9,20 @@ defmodule Speech do
     which impel them to the separation.
     """
   end
+  
+  def passage("tom jobim") do
+    """
+    A stick, a stone
+    It's the end of the road
+    It's the rest of a stump
+    It's a little alone
+
+    It's a sliver of glass
+    It is life, it's the sun
+    It is night, it is death
+    It's a trap, it's a gun
+    """
+  end
 
   def passage("macbeth") do
     """
@@ -25,7 +39,7 @@ defmodule Speech do
     """
   end
   
-    def passage("gettysburg") do
+  def passage("gettysburg") do
     """
     Four score and seven years ago
     our fathers brought forth on this continent,
@@ -43,4 +57,22 @@ defmodule Speech do
     """
   end
 
+  # Who goes with Fergus? — W.B. Yeats
+  def passage("fergus") do
+    """
+    Who will go drive with Fergus now,
+    And pierce the deep wood's woven shade,
+    And dance upon the level shore?
+    Young man, lift up your russet brow,
+    And lift your tender eyelids, maid
+    And brood on hopes and fear no more.
+
+    And no more turn aside and brood
+    Upon love's bitter mystery;
+    For Fergus rules the brazen cars,
+    And rules the shadows of the wood,
+    And the white breast of the dim sea
+    And all dishevelled wandering stars.
+    """
+  end
 end
