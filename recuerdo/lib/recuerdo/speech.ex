@@ -1,4 +1,14 @@
 defmodule Speech do
+  @speeches ["preamble", "tom jobim", "macbeth", "gettysburg", "tao", "fergus"]
+  
+  def random_passage() do
+    @speeches 
+    |> Enum.random()
+    |> passage()
+  end
+  
+  def list, do: @speeches
+
   def passage("preamble") do
     """
     When in the Course of human events, it becomes necessary for one people to
@@ -9,7 +19,7 @@ defmodule Speech do
     which impel them to the separation.
     """
   end
-  
+
   def passage("tom jobim") do
     """
     A stick, a stone
@@ -38,7 +48,7 @@ defmodule Speech do
     Signifying nothing.
     """
   end
-  
+
   def passage("gettysburg") do
     """
     Four score and seven years ago
@@ -49,9 +59,9 @@ defmodule Speech do
     that all men are created equal.
     """
   end
-  
+
   def passage("tao") do
- 	  """
+    """
     The highest sage shares his moral possessions with others.  The next in
     wisdom shares his material possessions with others.
     """

@@ -27,12 +27,13 @@ defmodule RecuerdoWeb.CounterLive do
     """
   end
 
-  defp change(socket,"increment") do
+  defp change(socket, "increment") do
     assign(socket,
       count: Counter.increment(socket.assigns.count)
     )
   end
-  defp change(socket,"decrement") do
+
+  defp change(socket, "decrement") do
     assign(socket,
       count: Counter.decrement(socket.assigns.count)
     )
@@ -40,6 +41,5 @@ defmodule RecuerdoWeb.CounterLive do
 
   def handle_event("change", %{"direction" => direction}, socket) do
     {:noreply, socket |> change(direction)}
-
   end
 end
