@@ -1,11 +1,14 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Recuerdo.Repo.insert!(%Recuerdo.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+now = NaiveDateTime.local_now
+speeches = 
+  Speech.list
+  |> Enum.map(fn name -> 
+    [
+      name: name, 
+      steps: 5, 
+      text: Speech.passage(name), 
+      inserted_at: now, 
+      updated_at: now,
+    ]
+  end)
+  |> IO.inspect
+Recuerdo.Repo.insert_all( Recuerdo.Library.Passage, speeches)

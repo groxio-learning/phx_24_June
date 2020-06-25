@@ -1,0 +1,5 @@
+<h1>Recuerdo!</h1>
+<p><%= @eraser.current_text %></p>
+<button phx-click="erase">Erase!</button>
+<button <%= disabled?(@eraser) %> phx-click="play_again">Play Again</button>
+<pre><%= inspect @eraser %></pre>

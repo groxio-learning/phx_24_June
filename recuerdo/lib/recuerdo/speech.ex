@@ -1,9 +1,13 @@
 defmodule Speech do
+  @speeches ["preamble", "tom jobim", "macbeth", "gettysburg", "tao", "fergus"]
+  
   def random_passage() do
-    ["preamble", "tom jobim", "macbeth", "gettysburg", "tao", "fergus"]
+    @speeches 
     |> Enum.random()
     |> passage()
   end
+  
+  def list, do: @speeches
 
   def passage("preamble") do
     """
