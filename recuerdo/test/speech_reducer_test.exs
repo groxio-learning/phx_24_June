@@ -35,4 +35,24 @@ defmodule Recuerdo.SpeechReducerTest do
     assert model.current_step == 4
     assert ["____" | _] = model.history
   end
+
+  test "current_step increments on each erase with pipe" do
+    result =
+      SpeechReducer.new("abcd", 4)
+      |> assert_key(:current_step, 1)
+      |> SpeechReducer.erase()
+      |> assert_key(:current_step, 2)
+      |> SpeechReducer.erase()
+      |> assert_key(:current_step, 3)
+      |> SpeechReducer.erase()
+      |> assert_key(:current_step, 4)
+
+    assert ["____" | _] = result.history
+  end
+
+  defp assert_key(acc, key, expected) do
+    actual = Map.get(acc, key)
+    assert actual == expected
+    acc
+  end
 end
