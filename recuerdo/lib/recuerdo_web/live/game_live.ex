@@ -1,10 +1,11 @@
 defmodule RecuerdoWeb.GameLive do
   use RecuerdoWeb, :live_view
   alias Recuerdo.Model
+  alias Recuerdo.Library.Passage
 
   @spec mount(any, any, Phoenix.LiveView.Socket.t()) :: {:ok, any}
   def mount(_params, _session, socket) do
-    {:ok, new_eraser(socket)}
+    {:ok, assign(socket, eraser: nil, changeset: Passage.nameless_changeset(%Passage{}, %{}))}
   end
 
   def handle_event("erase", _, socket) do

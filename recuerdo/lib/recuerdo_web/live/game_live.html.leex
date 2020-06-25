@@ -1,5 +1,25 @@
 <h1>Recuerdo!</h1>
+<%= if is_nil(@eraser) do %>
+<div>
+<%= f = form_for @changeset, "#",
+  phx_change: "validate",
+  phx_submit: "save" %>
+
+  <%= label f, :text %>
+  <%= textarea f, :text %>
+  <%= error_tag f, :text %>
+
+  <%= label f, :steps %>
+  <%= number_input f, :steps %>
+  <%= error_tag f, :steps %>
+
+  <%= submit "Play" %>
+</form>
+
+</div>
+<% else %>
 <p><%= @eraser.current_text %></p>
 <button phx-click="erase">Erase!</button>
 <button <%= disabled?(@eraser) %> phx-click="play_again">Play Again</button>
+<% end %>
 <pre><%= inspect @eraser %></pre>
