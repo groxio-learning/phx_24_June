@@ -1,28 +1,42 @@
 defmodule RecuerdoWeb.GameLive do
   use RecuerdoWeb, :live_view
-  alias Recuerdo.Model
+  alias Recuerdo.{Model,Library}
   alias Recuerdo.Library.Passage
 
   @spec mount(any, any, Phoenix.LiveView.Socket.t()) :: {:ok, any}
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, eraser: nil, changeset: Passage.nameless_changeset(%Passage{}, %{}))}
+    {
+      :ok,
+      assign(socket, eraser: nil, changeset: Passage.nameless_changeset(%Passage{}, %{}))
+      |> set_passage_names()
+    }
+  end
+
+  defp set_passage_names(socket) do
+    assign(socket, passage_names: Recuerdo.Library.passage_names())
   end
 
   def handle_event("erase", _, socket) do
     {:noreply, socket |> erase()}
   end
-
   def handle_event("play_again", _, socket) do
     {:noreply, assign(socket, eraser: nil)}
   end
-
   def handle_event("validate", %{"passage" => params}, socket) do
     {:noreply, socket |> validate(params)}
   end
-
   def handle_event("save", %{"passage" => params}, socket) do
     {:noreply, socket |> save(params)}
   end
+  def handle_event("passage", %{"name" => name}, socket) do
+    {:noreply, socket |> select_passage(name)}
+  end
+
+  defp select_passage(socket, name) do
+    passage = Library.find_passage_by_name(name)
+    new_eraser(socket, passage.text, passage.steps)
+  end
+
 
   defp erase(socket) do
     new_eraser =

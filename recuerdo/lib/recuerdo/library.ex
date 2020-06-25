@@ -20,9 +20,9 @@ defmodule Recuerdo.Library do
   def list_passages do
     Repo.all(Passage)
   end
-  
+
   def passage_names do
-    (from p in Passage, 
+    (from p in Passage,
     select: p.name)
     |> Repo.all
   end
@@ -106,5 +106,10 @@ defmodule Recuerdo.Library do
   """
   def change_passage(%Passage{} = passage, attrs \\ %{}) do
     Passage.changeset(passage, attrs)
+  end
+
+  def find_passage_by_name(name) do
+    (from p in Passage, where: p.name == ^name)
+    |> Repo.one
   end
 end
