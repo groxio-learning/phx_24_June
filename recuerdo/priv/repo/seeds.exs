@@ -10,5 +10,4 @@ speeches =
       updated_at: now,
     ]
   end)
-  |> IO.inspect
 Recuerdo.Repo.insert_all( Recuerdo.Library.Passage, speeches)
