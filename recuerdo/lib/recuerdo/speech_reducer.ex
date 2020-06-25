@@ -15,10 +15,14 @@ defmodule Recuerdo.SpeechReducer do
     # In the last step, probability should be 100%.
     # In step 2 of 3, prob should be 66%.
     # In step 1 of 3, prob shoudl be 33%.
-    probability = model.current_step / model.steps * 100
+    probability = 100 * model.current_step / model.steps
     new_text =
       model.text
       |> String.graphemes()
+
+      # TODO Modify this to not replace non-alpha-numeric characters:
+      #      preserve punctuation, space, line endings.
+
       |> Enum.map(fn char -> if Enum.random(1..100) <= probability do "_" else char end end)
       |> Enum.join("")
     %SpeechReducer{ model | text: new_text, history: [new_text | history], current_step: model.current_step + 1}
