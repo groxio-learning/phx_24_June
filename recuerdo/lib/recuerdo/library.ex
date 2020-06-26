@@ -3,6 +3,8 @@ defmodule Recuerdo.Library do
   The Library context.
   """
 
+  @channel_name "library-passage-added"
+
   import Ecto.Query, warn: false
   alias Recuerdo.Repo
 
@@ -57,11 +59,15 @@ defmodule Recuerdo.Library do
 
   """
   def create_passage(attrs \\ %{}) do
-    Phoenix.PubSub.broadcast(Recuerdo.PubSub, "library-passage-added", attrs["name"])
+    broadcast_new_passage(attrs["name"])
 
     %Passage{}
     |> Passage.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def broadcast_new_passage(name) do
+    Phoenix.PubSub.broadcast(Recuerdo.PubSub, @channel_name, name)
   end
 
   @doc """
