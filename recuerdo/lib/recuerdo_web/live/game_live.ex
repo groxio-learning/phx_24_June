@@ -25,6 +25,7 @@ defmodule RecuerdoWeb.GameLive do
     assign(socket, passage_names: Recuerdo.Library.passage_names())
   end
 
+  @spec handle_event(<<_::32, _::_*8>>, any, Phoenix.LiveView.Socket.t()) :: {:noreply, any}
   def handle_event("erase", _, socket) do
     {:noreply, socket |> erase()}
   end
