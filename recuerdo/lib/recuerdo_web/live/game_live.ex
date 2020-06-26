@@ -2,7 +2,7 @@ defmodule RecuerdoWeb.GameLive do
   use RecuerdoWeb, :live_view
 
   alias Phoenix.PubSub
-  alias Recuerdo.{Model, Library}
+  alias Recuerdo.{Answer, Model, Library}
   alias Recuerdo.Library.Passage
 
   @spec mount(any, any, Phoenix.LiveView.Socket.t()) :: {:ok, any}
@@ -11,7 +11,12 @@ defmodule RecuerdoWeb.GameLive do
 
     {
       :ok,
-      assign(socket, eraser: nil, changeset: Passage.nameless_changeset(%Passage{}, %{}))
+      assign(socket,
+        eraser: nil,
+        changeset: Passage.nameless_changeset(%Passage{}, %{}),
+        answer_changeset: Answer.change_answer(%{}),
+        score: 0
+      )
       |> set_passage_names()
     }
   end
@@ -38,6 +43,10 @@ defmodule RecuerdoWeb.GameLive do
 
   def handle_event("passage", %{"name" => name}, socket) do
     {:noreply, socket |> select_passage(name)}
+  end
+
+  def handle_event("score", %{"answer" => params}, socket) do
+    {:noreply, socket |> score(params["answer"])}
   end
 
   def handle_info("some name", socket) do
@@ -74,5 +83,9 @@ defmodule RecuerdoWeb.GameLive do
     unless Model.finished?(eraser) do
       "disabled"
     end
+  end
+
+  def score(socket, answer) do
+    assign(socket, score: Model.score(socket.assigns.eraser, answer))
   end
 end
