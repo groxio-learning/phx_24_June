@@ -1,6 +1,6 @@
 defmodule Recuerdo.Model do
   @enforce_keys [:original_text, :current_text, :schedule]
-  defstruct [:original_text, :current_text, :schedule]
+  defstruct [:original_text, :current_text, :schedule ]
 
   @type t :: %__MODULE__{
           original_text: String.t(),
@@ -20,11 +20,12 @@ defmodule Recuerdo.Model do
   end
 
   @spec erase(t) :: t
-  def erase(model = %__MODULE__{schedule: []}) do
+  def erase(model = %__MODULE__{schedule: []} ) do
     model
   end
 
-  def erase(model = %__MODULE__{schedule: [deletions | new_schedule]}) do
+  def erase(model = %__MODULE__{schedule: [deletions | new_schedule]} ) do
+    
     new_text =
       model.current_text
       |> apply_deletions(deletions)
@@ -34,6 +35,17 @@ defmodule Recuerdo.Model do
       current_text: new_text,
       schedule: new_schedule
     }
+
+  end
+  
+  def score(model, answer) do
+    
+      model.original_text
+      |> String.myers_difference(answer) 
+      |> Enum.reject(fn {action, _str} -> action == :eq end) 
+      |> Enum.map(fn {_a, string} -> String.length(string) end) 
+      |> Enum.sum
+     
   end
 
   @spec make_schedule(String.t(), integer) :: [MapSet.t(integer)]
