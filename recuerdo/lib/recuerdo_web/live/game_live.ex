@@ -40,6 +40,10 @@ defmodule RecuerdoWeb.GameLive do
     {:noreply, socket |> select_passage(name)}
   end
 
+  def handle_info("some name", socket) do
+    {:noreply, socket |> set_passage_names}
+  end
+
   defp select_passage(socket, name) do
     passage = Library.find_passage_by_name(name)
     new_eraser(socket, passage.text, passage.steps)
