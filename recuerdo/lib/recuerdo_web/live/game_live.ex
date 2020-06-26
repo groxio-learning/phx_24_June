@@ -89,4 +89,6 @@ defmodule RecuerdoWeb.GameLive do
   def score(socket, answer) do
     assign(socket, score: Model.score(socket.assigns.eraser, answer))
   end
+
+
 end
