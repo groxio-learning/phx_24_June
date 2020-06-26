@@ -29,7 +29,22 @@
 </div>
 <% else %>
 <p><%= @eraser.current_text %></p>
-<button phx-click="erase">Erase!</button>
+
+
+
+<%= f = form_for @answer_changeset, "#",
+  phx_change: "score",
+  phx_submit: "erase",
+  as: :answer %>
+
+  <%= label f, :answer %>
+  <%= textarea f, :answer %>
+  <%= error_tag f, :answer %>
+
+  <%= submit "Erase!" %>
+
+</form>
+<h2>Score: <%= @score %> </h2>
 <button <%= disabled?(@eraser) %> phx-click="play_again">Play Again</button>
 <% end %>
 <pre><%= inspect @passage_names %></pre>

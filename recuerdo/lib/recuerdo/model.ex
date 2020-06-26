@@ -25,7 +25,7 @@ defmodule Recuerdo.Model do
   end
 
   def erase(model = %__MODULE__{schedule: [deletions | new_schedule]} ) do
-    
+
     new_text =
       model.current_text
       |> apply_deletions(deletions)
@@ -37,15 +37,15 @@ defmodule Recuerdo.Model do
     }
 
   end
-  
+
   def score(model, answer) do
-    
+
       model.original_text
-      |> String.myers_difference(answer) 
-      |> Enum.reject(fn {action, _str} -> action == :eq end) 
-      |> Enum.map(fn {_a, string} -> String.length(string) end) 
+      |> String.myers_difference(answer)
+      |> Enum.reject(fn {action, _str} -> action == :eq end)
+      |> Enum.map(fn {_a, string} -> String.length(string) end)
       |> Enum.sum
-     
+
   end
 
   @spec make_schedule(String.t(), integer) :: [MapSet.t(integer)]
@@ -87,4 +87,6 @@ defmodule Recuerdo.Model do
 
   def finished?(%{schedule: []}), do: true
   def finished?(_model), do: false
+
+
 end
